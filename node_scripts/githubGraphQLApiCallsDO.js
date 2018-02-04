@@ -256,7 +256,7 @@ let basicData = [];
 let graphQLData = [];
 let errors = 0;
 
-console.log("reading csv data...");
+console.log("reading csv data from "+ input +"...");
 readData();
 function readData() {
     basicData = [];
@@ -324,7 +324,7 @@ function callRequest(i) {
 }
 
 function saveData() {
-    console.log("saving data...");
+    console.log("saving data to "+ output +"...");
     jsonfile.writeFile(output, graphQLData, function (err) {
         if (err) console.log(err);
         console.log("done saving! " + graphQLData.length + " items");
