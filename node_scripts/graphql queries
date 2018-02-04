@@ -1,0 +1,208 @@
+query ($owner: String!, $name: String!, $isUser:Boolean!) {  
+  
+  organization(login: $owner) @skip(if: $isUser){
+    
+    repositories{
+      totalCount
+    }       
+    
+    location		#location of organization
+    
+    members{
+      totalCount
+    }
+    
+    websiteUrl        
+  }
+  
+  user(login: $owner) @include(if: $isUser){            
+    
+    followers{		# number of followers of the user
+      totalCount
+    }    
+	repositories{		# number of repositories of the user
+      totalCount
+    }
+    
+    following{	# following
+      totalCount
+    }
+    
+    location    # location of user
+    
+    organizations{
+      totalCount
+    }
+    
+    gists(last:100){
+      edges{
+        node{          
+          comments{
+            totalCount
+          }
+          stargazers{
+            totalCount
+          }          
+        }
+      }
+      totalCount
+    }    
+    
+    websiteUrl
+  }
+  
+  repository(owner: $owner, name: $name) {    
+
+    primaryLanguage{
+      name
+    }
+
+    license
+    
+    isArchived
+
+    hasWikiEnabled
+    
+    forkCount
+    
+    # readme of the repo
+    object(expression: "master:README.md"){
+      ... on Blob{
+        text
+        byteSize
+      }
+    }
+    
+    stars: stargazers{
+      totalCount
+    }
+    createdAt
+    updatedAt
+    pushedAt
+
+    
+    description
+    
+    subscribersCount: watchers{
+      totalCount
+    }
+    
+    # size of repository
+    diskUsage
+    
+    # pull requests number
+    pullRequestsOpen: pullRequests(states: OPEN){            
+      totalCount
+    }
+    pullRequestsClosed: pullRequests(states: CLOSED){
+      totalCount
+    }
+    pullRequestsMerged: pullRequests(states: MERGED){
+      totalCount
+    }
+
+    # total number of comments and commits for last open 100 PRs
+    PROpenCommentsCommitsCount: pullRequests(last:100, states: OPEN){
+      edges{
+        node{
+          comments{
+            totalCount
+          }
+          commits{
+            totalCount
+          }          
+        }
+      }
+    }
+    
+    # total number of comments and commits for last 100 closed PRs
+    PRClosedCommentsCommitsCount: pullRequests(last:100, states: CLOSED){
+      edges{
+        node{
+          comments{
+            totalCount
+          }
+          commits{
+            totalCount
+          }          
+        }
+      }
+    }
+    
+    # total number of comments and commits for last 100 merged PRs
+    PRMergedCommentsCommitsCount: pullRequests(last:100, states: MERGED){
+      edges{
+        node{
+          comments{
+            totalCount
+          }
+          commits{
+            totalCount
+          }          
+        }
+      }
+    }
+    
+    # issues number
+    issuesOpen:issues(states:OPEN){
+      totalCount
+    }
+    issuesClosed:issues(states:CLOSED){
+      totalCount
+    }
+    
+    # number of comments on last 100 open issues
+    iOpenCommentsParticipantsCount: issues(last: 100, states:OPEN){
+      edges{
+        node{
+          comments{
+            totalCount
+          }
+          participants{
+            totalCount
+          }          
+        }
+      }
+    }
+    
+    # number of comments on last 100 closed issues
+    iClosedCommentsParticipantsCount: issues(last: 100, states:CLOSED){
+      edges{
+        node{
+          comments{
+            totalCount
+          }
+          participants{
+            totalCount
+          }          
+        }
+      }
+    }
+    
+    # total number of branches
+    refs(refPrefix: "refs/heads/") {
+      totalCount      
+    }
+    
+    # total commits on master branch
+    ref(qualifiedName: "master"){
+      target{
+        ... on Commit{
+          history{
+            totalCount
+          }
+        }
+      }
+    }
+    
+    # total number of tags
+    tags:refs(refPrefix:"refs/tags/"){
+      totalCount
+    }
+    
+    # total number of releases
+    releases {
+    	totalCount  
+    }
+  }
+}
