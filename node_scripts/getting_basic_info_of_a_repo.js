@@ -1,4 +1,7 @@
 const request = require('request');
+const dotenv = require("dotenv");
+dotenv.config();
+dotenv.load();
 let url = 'https://api.github.com/repos';
 let json2csv = require('json2csv');
 let csv = require('csvtojson');
@@ -31,7 +34,7 @@ function getRepos(RepoName, Ownername, RepoDetails) {
     return new Promise((resolve) => {
         let options = {
             method: 'GET',
-            url: url + "/" + Ownername + "/" + RepoName + "?client_id=7deec774e3dccdd361b5&client_secret=5f841951982f75b2045d8d79758a91daa8aa9578",
+            url: url + "/" + Ownername + "/" + RepoName + "?client_id="+process.env.CLIENT_ID+"&client_secret="+process.env.CLIENT_SECRET,
             // proxy: 'http://103.28.160.149:8081',
             headers: {"User-Agent": "hackbansu"}
         };

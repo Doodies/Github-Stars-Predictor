@@ -9,7 +9,7 @@ function getRepos(i) {
     let options = {
         method: 'GET',
         url: url,
-        proxy: 'http://54.215.238.241:30094',
+        // proxy: 'http://54.215.238.241:30094',
         qs: {since: i},
         headers: {"User-Agent": "hackbansu"}
     };
