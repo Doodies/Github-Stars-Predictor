@@ -42,3 +42,5 @@ jspm_packages
 dist
 repos
 basic_info_of_repos
+graphQL_info_of_repos
+node_scripts/node_modules
