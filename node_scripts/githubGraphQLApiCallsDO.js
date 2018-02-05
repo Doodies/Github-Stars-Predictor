@@ -21,6 +21,7 @@ function getQuery() {
     let q = 'query ($owner: String!, $name: String!, $isUser:Boolean!) {  \n' +
         '  \n' +
         '  organization(login: $owner) @skip(if: $isUser){\n' +
+        '    login\n' +
         '    \n' +
         '    repositories{\n' +
         '      totalCount\n' +
@@ -36,6 +37,7 @@ function getQuery() {
         '  }\n' +
         '  \n' +
         '  user(login: $owner) @include(if: $isUser){            \n' +
+        '    login\n' +
         '    \n' +
         '    followers{\t\t# number of followers of the user\n' +
         '      totalCount\n' +
@@ -71,7 +73,8 @@ function getQuery() {
         '    websiteUrl\n' +
         '  }\n' +
         '  \n' +
-        '  repository(owner: $owner, name: $name) {    \n' +
+        '  repository(owner: $owner, name: $name) {\n' +
+        '    name\t\t# name of the repo           \n' +
         '\n' +
         '    primaryLanguage{\n' +
         '      name\n' +
@@ -86,7 +89,7 @@ function getQuery() {
         '    forkCount\n' +
         '    \n' +
         '    # readme of the repo\n' +
-        '    object(expression: "master:README.md"){\n' +
+        '    readme:object(expression: "master:README.md"){\n' +
         '      ... on Blob{\n' +
         '        text\n' +
         '        byteSize\n' +
@@ -200,12 +203,12 @@ function getQuery() {
         '    }\n' +
         '    \n' +
         '    # total number of branches\n' +
-        '    refs(refPrefix: "refs/heads/") {\n' +
+        '    numBranches:refs(refPrefix: "refs/heads/") {\n' +
         '      totalCount      \n' +
         '    }\n' +
         '    \n' +
         '    # total commits on master branch\n' +
-        '    ref(qualifiedName: "master"){\n' +
+        '    numCommits:ref(qualifiedName: "master"){\n' +
         '      target{\n' +
         '        ... on Commit{\n' +
         '          history{\n' +

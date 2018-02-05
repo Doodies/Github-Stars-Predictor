@@ -244,8 +244,8 @@ function getRateLimitQuery() {
     return q;
 }
 
-const query = getQuery();
-// const query = getRateLimitQuery();
+// const query = getQuery();
+const query = getRateLimitQuery();
 let variables = {
     "owner": "rails",
     "name": "rails",
@@ -267,8 +267,8 @@ csv().fromFile(input).on('json', (jsonObj) => {
         console.log('done reading data! having length ', basicData.length);
 
         console.log("starting to fetch data...");
-        callRequest(0);
-        // callOneRequest(49);
+        // callRequest(0);
+        callOneRequest(49);
     });
 
 
@@ -287,7 +287,7 @@ function callOneRequest(i) {
     client
         .request(query, variables)
         .then(data => {
-            // console.log(data);
+            console.log(data);
             console.log("fetched!");
         })
         .catch((err) => {
