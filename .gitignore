@@ -37,10 +37,8 @@ jspm_packages
 .node_repl_history
 
 # Custom Files
-.env
+scripts/nodejs/.env
 .idea/
 dist
-repos
-# basic_info_of_repos
-graphQL_info_of_repos
-node_scripts/node_modules
+data/
+scripts/nodejs/node_modules
