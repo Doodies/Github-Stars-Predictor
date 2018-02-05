@@ -271,6 +271,7 @@ function readData() {
 
             console.log("starting to fetch data...");
             graphQLData = [];
+            errorsList = [];
             callRequest(0);
             // callOneRequest(49);
         });
