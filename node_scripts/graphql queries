@@ -1,6 +1,7 @@
 query ($owner: String!, $name: String!, $isUser:Boolean!) {  
   
   organization(login: $owner) @skip(if: $isUser){
+    login
     
     repositories{
       totalCount
@@ -16,6 +17,7 @@ query ($owner: String!, $name: String!, $isUser:Boolean!) {
   }
   
   user(login: $owner) @include(if: $isUser){            
+    login
     
     followers{		# number of followers of the user
       totalCount
@@ -51,7 +53,8 @@ query ($owner: String!, $name: String!, $isUser:Boolean!) {
     websiteUrl
   }
   
-  repository(owner: $owner, name: $name) {    
+  repository(owner: $owner, name: $name) {
+    name		# name of the repo           
 
     primaryLanguage{
       name
@@ -180,12 +183,12 @@ query ($owner: String!, $name: String!, $isUser:Boolean!) {
     }
     
     # total number of branches
-    refs(refPrefix: "refs/heads/") {
+    numBranches:refs(refPrefix: "refs/heads/") {
       totalCount      
     }
     
     # total commits on master branch
-    ref(qualifiedName: "master"){
+    numCommits:ref(qualifiedName: "master"){
       target{
         ... on Commit{
           history{

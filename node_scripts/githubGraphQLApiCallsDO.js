@@ -12,7 +12,7 @@ const client = new GraphQLClient(url, {
         Authorization: 'bearer ' + process.env.TOKEN,
     },
 });
-let start = 5, end = start + 5;
+let start = parseInt(process.env.START), end = start + 5;
 let fmid = "" + start + "_" + end;
 let input = "./../basic_info_of_repos/file_" + fmid + ".csv";
 let output = "./../graphQL_info_of_repos/file_" + fmid + ".json";
@@ -254,11 +254,11 @@ let variables = {
 
 let basicData = [];
 let graphQLData = [];
-let errors = 0;
+let errors = 0, errorsList = [];
 
-console.log("reading csv data from "+ input +"...");
 readData();
 function readData() {
+    console.log("reading csv data from "+ input +"...");
     basicData = [];
     csv().fromFile(input).on('json', (jsonObj) => {
         basicData.push(jsonObj);
@@ -311,6 +311,7 @@ function callRequest(i) {
     client
         .request(query, variables)
         .then(data => {
+            data["repository"]["type"] = variables["isUser"] ? "user" : "organization";
             graphQLData.push(data);
             console.log("got " + i + " data!");
             callRequest(i + 1);
@@ -318,6 +319,7 @@ function callRequest(i) {
         .catch((err) => {
             console.log("got error on " + i + " data! ************************************");
             errors++;
+            errorsList.push(i);
             console.log(err.response);
             callRequest(i + 1);
         });
@@ -329,9 +331,10 @@ function saveData() {
         if (err) console.log(err);
         console.log("done saving! " + graphQLData.length + " items");
         console.log("got " + errors + " errors");
+        console.log(errorsList);
 
         //changing input file now
-        if(start !== 95){
+        if(start !== parseInt(process.env.END)){
             start = start+5;
             end = start+5;
             fmid = "" + start + "_" + end;
