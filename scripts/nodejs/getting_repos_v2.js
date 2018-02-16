@@ -13,7 +13,7 @@ let startTime = new Date();
 let nReq = 0, nRes = 0, setI, reqSetI;
 
 function getRepos() {
-    if (fD <= new Date("2014-1-1")) {
+    if (fD <= new Date("2008-1-1")) {
         clearInterval(reqSetI);
         console.log("Task completed");
         // saving data
