@@ -1,0 +1,21 @@
+{
+  "name": "git-star-predictor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Get-Contributors.js",
+  "dependencies": {
+    "csvtojson": "^1.1.9",
+    "dateformat": "^3.0.3",
+    "dotenv": "^5.0.0",
+    "graphql-request": "^1.4.1",
+    "json2csv": "^3.11.5",
+    "jsonfile": "^4.0.0",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
