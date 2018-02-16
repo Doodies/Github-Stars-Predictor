@@ -195,6 +195,13 @@ for file in files:
 
 print '----------------------------  total files :  ' + str(len(json_files))
 for file in json_files:
+	user_values = []
+	org_values = []
+	user_col = []
+	org_col = []
+
+	isEmptyUser = True
+	isEmptyOrg = True
 	data = json.load(open(path + file))
 	count = 0
 	print '----------------- ' + str(file) + ' -----------------------'
