@@ -68,8 +68,32 @@ query ($owner: String!, $name: String!, $isUser:Boolean!) {
     
     forkCount
     
-    # readme of the repo
-    readme:object(expression: "master:README.md"){
+    # readme.md of the repo
+    readme_md:object(expression: "master:README.md"){
+      ... on Blob{
+        text
+        byteSize
+      }
+    }
+    readme_txt:object(expression: "master:README.txt"){
+      ... on Blob{
+        text
+        byteSize
+      }
+    }
+    readme_markdown:object(expression: "master:README.markdown"){
+      ... on Blob{
+        text
+        byteSize
+      }
+    }
+    readme_tst:object(expression: "master:README.tst"){
+      ... on Blob{
+        text
+        byteSize
+      }
+    }
+    readme_:object(expression: "master:README"){
       ... on Blob{
         text
         byteSize

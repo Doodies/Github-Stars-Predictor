@@ -1,11 +1,10 @@
-cd ./../node_scripts
+cd ./../nodejs
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
-npm install graphql-request dotenv csvtojson jsonfile
+npm install
 echo "TOKEN =
-START = 5
-END = 10" > .env
-cd ./../
-mkdir graphQL_info_of_repos
+START = 0
+END = 10000" > .env
+mkdir graphQlData
+cd ./../../
 cp .tmux.conf ~/.tmux.conf
-cd ./node_scripts
