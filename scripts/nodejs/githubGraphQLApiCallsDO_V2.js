@@ -296,7 +296,7 @@ function readData() {
 
             //starting the request cycle
             console.log("starting to fetch data...");
-            reqSetI = setInterval(callRequest, 730);
+            reqSetI = setInterval(callRequest, parseInt(process.env.LOOPDELAY));
         });
 }
 
@@ -332,7 +332,8 @@ function callRequest() {
             data["siteAdmin"] = repo["SideAdmin"];
             graphQLData.push(data);
             nRes++;
-            console.log("got " + nRes + " response data for request number " + myReq + "\ttotal data len: " + (graphQLData.length) + "\tcompleted at: " + (new Date() - startTime) / 1000.0 + "s");
+            console.log("got " + nRes + " response for reqNum " + myReq + "\ttotal data len: " + (graphQLData.length)
+                + "\terrors: " + errors + "\tat: " + (new Date() - startTime) / 1000.0 + "s");
         })
         .catch((err) => {
             nRes++;
