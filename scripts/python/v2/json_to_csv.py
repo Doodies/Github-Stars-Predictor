@@ -97,7 +97,7 @@ def handle_objects(obj):
 	data_dict['branches'] = repo['numBranches']['totalCount']
 	data_dict['commits'] = repo['numCommits']['target']['history']['totalCount'] if repo['numCommits'] is not None else ""
 	data_dict['prMergedCommits'], data_dict['prMergedComments'] = handle_pr(repo['PRMergedCommentsCommitsCount']) 
-	data_dict['prOpenCommits'], data_dict['prOpenCommits'] = handle_pr(repo['PROpenCommentsCommitsCount']) 
+	data_dict['prOpenCommits'], data_dict['prOpenComments'] = handle_pr(repo['PROpenCommentsCommitsCount']) 
 	data_dict['prClosedCommits'], data_dict['prClosedComments'] = handle_pr(repo['PRClosedCommentsCommitsCount'])
 	data_dict['iOpenParticipants'], data_dict['iOpenComments'] = handle_issues(repo['iOpenCommentsParticipantsCount'])
 	data_dict['iClosedParticipants'], data_dict['iClosedComments'] = handle_issues(repo['iClosedCommentsParticipantsCount'])
