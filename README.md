@@ -14,7 +14,7 @@ having more than 100 stars. The data is available in the dataset directory
 We were able to collect the data faster using the Digital Ocean's multiple 
 servers. So we thanks [Digital Ocean](http://digitalocean.com) for providing 
 free credits to students to use servers. For the details on dataset features
-refer the report section below.
+refer the summary section below.
 
 ## Tools used
 - Python 2.7
@@ -35,58 +35,83 @@ providing GPUs
 Below is a brief description for the Code files/folder in repo.
 
 ### Bash script
-- settingUpDOServer.sh <br>
+- **settingUpDOServer.sh** <br>
 filepath: scripts/bash/settingUpDOServer.sh<br>
 This is used for configuring the digital ocean server
 
 ### NodeJs scripts
-- getting_repos_v2.js<br>
+- **getting_repos_v2.js**<br>
 filepath: scripts/nodejs/getting_repos_v2.js<br>
 This script fetches the basic info of repos having more than 100 stars using the Github REST API
 
-- githubGraphQLApiCallsDO_V2.js<br>
+- **githubGraphQLApiCallsDO_V2.js**<br>
 filepath: scripts/nodejs/githubGraphQLApiCallsDO_V2.js<br>
 This script fetches the complete info of the repositories that were fetched by the above
 script and uses the Github GraphQL API. It follows the approach of fetching the data 
 at the fixed rate defined in env file (eg. 730ms per request)
 
-- githubGraphQLApiCallsDO_V3.js<br>
+- **githubGraphQLApiCallsDO_V3.js**<br>
 filepath: scripts/nodejs/githubGraphQLApiCallsDO_V3.js<br>
 This script fetches the complete info of the repositories that were fetched by the above
 script and uses the Github GraphQL API. It follows the approach of requesting data for 
 next repo after receiving the response of the already sent request.
 
 ### python scripts
-- json_to_csv.py<br>
+- **json_to_csv.py**<br>
 filepath: scripts/python/json_to_csv.py<br>
 This script converts the json data fetched from Github's GraphQL API in the above script to the
 equivalent csv file.
 
-- merge.py<br>
+- **merge.py**<br>
 filepath: scripts/python/merge.py<br>
 This scripts merges all the data in multiple csv files to a single csv file
 
 ### Jupyter Notebooks
-- VisualizePreprocess.ipynb<br>
+- **VisualizePreprocess.ipynb**<br>
 filepath: notebooks/VisualizePreprocess.ipynb<br>
 We have done the feature engineering task in this notebook. It visualises the data and correspondingly 
 creates new features, modifies existing features and removes redundant features. For details 
-on features created, check the report below
+on features created, check the summary below
 
-- training_models.ipynb<br>
+- **training_models.ipynb**<br>
 filepath: notebooks/training_models.ipynb<br>
 In this notebook, we trained different models with hyper parameter tuning on our dataset and compared their result in the end.
-For details on models trained, their prediction scores, etc. check the report below.
+For details on models trained, their prediction scores, etc. check the summary below.
 
-
-## Report
+## Summary
 In this project we have tried to predict the number of stars 
-of a github repository. For this we have taken the github repository 
-data from github REST api and GraphQL api. After generating the
- dataset we visulaized and did some feature engineering with the 
-dataset and after that , finally we come up to the stage where we 
-will apply various models and predict our scores on training and 
+of a github repository that have more than 100 stars. For this we have
+taken the github repository data from github REST api and GraphQL api. 
+After generating the dataset we visulaized and did some feature engineering 
+with the dataset and after that , finally we come up to the stage where we 
+applied various models and predicted the model's scores on training and 
 test data.
+
+### Feature Engineering
+There are total of 54 features
+
+#### Features
+Row 1 | Row 2 | Row 3
+------------ | ------------- | -------------
+branches | commits | createdAt 
+diskUsage | followers | following
+forkCount | gistComments | gistStar
+gists | hasWikiEnabled | iClosedComments
+iClosedParticipants | iOpenComments | iOpenParticipants
+issuesClosed | issuesOpen | members
+organizations | prClosed | prClosedComments
+prClosedCommits | prMerged | prMergedComments
+prMergedCommits | prOpen | prOpenComments
+prOpenCommits | pushedAt | readmeCharCount
+readmeLinkCount | readmeSize | readmeWordCount
+releases | repositories | subscribersCount
+tags | type | updatedAt
+websiteUrl | desWordCount | desCharCount
+mit_license | nan_license | apache_license
+other_license | remain_license | JavaScript
+Python | Java | Objective
+Ruby | PHP | other_language
+
 
 
 ## Results 
