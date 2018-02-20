@@ -1,0 +1,10 @@
+git clone https://github.com/Doodies/Github-Stars-Predictor.git
+cd Github-Stars-Predictor/scripts/bash
+vim settingUpDOServer.sh
+
+chmod +x settingUpDOServer.sh
+./settingUpDOServer.sh
+
+cd ./../nodejs/
+tmux new -s dataset
+node githubGraphQLApiCallsDO_V3.js
