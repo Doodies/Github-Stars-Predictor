@@ -15,6 +15,17 @@ org_col = []
 
 isEmptyUser = True
 isEmptyOrg = True
+
+def isReadmeFileExist(repo):
+	value = ''
+	find  = False
+	for readme in repo.keys():
+		if str(readme).startswith('readme'):
+			if i['repository'][str(readme)] != None and len(i['repository'][str(readme)]) > 0:
+				find = True
+				value = readme
+
+	return value if find else None
 def handle_gist(gists):
 	gists = gists['edges']
 	gistStars = 0
@@ -56,10 +67,13 @@ def handle_objects(obj):
 	global org_values
 	global user_col
 	global org_col
-
-	repo = obj['repository']	
 	data_dict = {}
+
+	data_dict['siteAdmin'] = obj['siteAdmin']
+
+	repo = obj['repository']
 	# print repo
+
 	data_dict['reponame'] = str(repo['name'])
 	data_dict['createdAt'] = repo['createdAt']
 	data_dict['pushedAt'] = repo['pushedAt']
@@ -83,20 +97,24 @@ def handle_objects(obj):
 	data_dict['branches'] = repo['numBranches']['totalCount']
 	data_dict['commits'] = repo['numCommits']['target']['history']['totalCount'] if repo['numCommits'] is not None else ""
 	data_dict['prMergedCommits'], data_dict['prMergedComments'] = handle_pr(repo['PRMergedCommentsCommitsCount']) 
-	data_dict['prOpenCommits'], data_dict['prOpenCommits'] = handle_pr(repo['PROpenCommentsCommitsCount']) 
+	data_dict['prOpenCommits'], data_dict['prOpenComments'] = handle_pr(repo['PROpenCommentsCommitsCount']) 
 	data_dict['prClosedCommits'], data_dict['prClosedComments'] = handle_pr(repo['PRClosedCommentsCommitsCount'])
 	data_dict['iOpenParticipants'], data_dict['iOpenComments'] = handle_issues(repo['iOpenCommentsParticipantsCount'])
 	data_dict['iClosedParticipants'], data_dict['iClosedComments'] = handle_issues(repo['iClosedCommentsParticipantsCount'])
 	data_dict['type'] = repo['type']
 
 	#  Handle the readme file
+
 	data_dict["readmeCharCount"] = 0
 	data_dict["readmeWordCount"] = 0
 	data_dict["readmeLinkCount"] = 0
 	data_dict["readmeSize"] = 0
-	if repo['readme'] != None:
-		data_dict['readmeSize'] = repo['readme']["byteSize"]
-		data_dict['readmeCharCount'], data_dict['readmeWordCount'], data_dict['readmeLinkCount'] = handle_readme(repo['readme']['text'])
+
+	readmeExt = isReadmeFileExist(repo)
+	if readmeExt != None:
+		# print readmeExt
+		data_dict['readmeSize'] = repo[readmeExt]["byteSize"]
+		data_dict['readmeCharCount'], data_dict['readmeWordCount'], data_dict['readmeLinkCount'] = handle_readme(repo[readmeExt]['text'])
 
 
 
