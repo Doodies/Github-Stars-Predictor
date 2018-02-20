@@ -94,7 +94,7 @@ Some features after pre-processing may not be clear. Please refer to the Visuali
 
 
 #### Original Features
-Row 1 | Row 2 | Row 3
+column 1 | column 2 | column 3
 ------------ | ------------- | -------------
 branches | commits | createdAt 
 description | diskUsage | followers 
@@ -115,7 +115,7 @@ tags | type | updatedAt
 websiteUrl |
 
 #### Features after pre-processing
-Row 1 | Row 2 | Row 3
+column 1 | column 2 | column 3
 ------------ | ------------- | -------------
 branches | commits | createdAt 
 diskUsage | followers | following
