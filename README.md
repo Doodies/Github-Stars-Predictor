@@ -145,7 +145,7 @@ Ruby | PHP | other_language
 
 ### Evaluation Metrics
 - **R^2 score**<br>
-![R^2 score formula](https://user-images.githubusercontent.com/24354661/36437718-cae34254-168d-11e8-93fe-724fc6f28117.png)
+![R^2 score formula](./images/1.png)
 
 ### Results
-![Result bar graph of different models]()
+![Result bar graph of different models](./images/2.png)
