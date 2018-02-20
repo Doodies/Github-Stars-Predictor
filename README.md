@@ -88,9 +88,33 @@ applied various models and predicted the model's scores on training and
 test data.
 
 ### Feature Engineering
-There are total of 54 features
+There are total of 49 features before pre-processing. After pre-processing (adding new features, removal of redundant features and
+modifying existing features) the count changes to 54. All the features are listed below.
+Some features after pre-processing may not be clear. Please refer to the VisualizePreprocess.ipynb notebook for details. 
 
-#### Features
+
+#### Original Features
+Row 1 | Row 2 | Row 3
+------------ | ------------- | -------------
+branches | commits | createdAt 
+description | diskUsage | followers 
+following | forkCount | gistComments 
+gistStar | gists | hasWikiEnabled 
+iClosedComments | iClosedParticipants | iOpenComments 
+iOpenParticipants | isArchived | issuesClosed
+issuesOpen | license | location 
+login | members | organizations 
+prClosed | prClosedComments | prClosedCommits
+prMerged | prMergedComments | prMergedCommits 
+prOpen | prOpenComments | prOpenCommits
+primaryLanguage | pushedAt | readmeCharCount 
+readmeLinkCount | readmeSize | readmeWordCount 
+releases | reponame | repositories
+siteAdmin | stars | subscribersCount 
+tags | type | updatedAt 
+websiteUrl |
+
+#### Features after pre-processing
 Row 1 | Row 2 | Row 3
 ------------ | ------------- | -------------
 branches | commits | createdAt 
@@ -113,5 +137,15 @@ Python | Java | Objective
 Ruby | PHP | other_language
 
 
+### Models Trained
+- **Gradient Boost Regressor**
+- **Cat Boost Regressor**
+- **Random Forest Regressor**
+- **Deep Neural Network**
 
-## Results 
+### Evaluation Metrics
+- **R^2 score**<br>
+![R^2 score formula](https://user-images.githubusercontent.com/24354661/36437718-cae34254-168d-11e8-93fe-724fc6f28117.png)
+
+### Results
+![Result bar graph of different models]()
