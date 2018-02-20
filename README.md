@@ -31,10 +31,10 @@ We also used [Google Colab's](http://colab.research.google.com/) GPU notebooks.
 So we thank to Google for starting thier colab project for 
 providing GPUs
 
-## code details
+## Code details
 Below is a brief description for the Code files/folder in repo.
 
-### Bash script
+### Bash Script
 - **settingUpDOServer.sh** <br>
 filepath: scripts/bash/settingUpDOServer.sh<br>
 This is used for configuring the digital ocean server
@@ -56,7 +56,7 @@ This script fetches the complete info of the repositories that were fetched by t
 script and uses the Github GraphQL API. It follows the approach of requesting data for 
 next repo after receiving the response of the already sent request.
 
-### python scripts
+### Python scripts
 - **json_to_csv.py**<br>
 filepath: scripts/python/json_to_csv.py<br>
 This script converts the json data fetched from Github's GraphQL API in the above script to the
@@ -82,7 +82,7 @@ For details on models trained, their prediction scores, etc. check the summary b
 In this project we have tried to predict the number of stars 
 of a github repository that have more than 100 stars. For this we have
 taken the github repository data from github REST api and GraphQL api. 
-After generating the dataset we visulaized and did some feature engineering 
+After generating the dataset we visualized and did some feature engineering 
 with the dataset and after that , finally we come up to the stage where we 
 applied various models and predicted the model's scores on training and 
 test data.
