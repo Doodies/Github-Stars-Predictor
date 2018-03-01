@@ -42,3 +42,5 @@ scripts/nodejs/.env
 dist
 data/
 scripts/nodejs/node_modules
+notebooks/.ipynb_checkpoints/
+notebooks/tpot.ipynb
